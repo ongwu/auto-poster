@@ -7,11 +7,17 @@ import os
 from datetime import datetime
 
 # 配置
-# 优先从环境变量获取，如果没有则使用默认值 (本地调试用)
-RSS_URL = os.getenv("RSS_URL", "https://rss.mydrivers.com/Rss.aspx?Tid=1")
-MEITUAN_API_KEY = os.getenv("MEITUAN_API_KEY", "ak_1WR4up7wx6XM4RJ0Fz9Hj3sC0KF9p")
-UPLOAD_API_URL = os.getenv("UPLOAD_API_URL", "https://ongwu-site.vercel.app/api/upload")
-UPLOAD_API_TOKEN = os.getenv("UPLOAD_API_TOKEN", "797asfbskIOSJFCWnwfslfjajtwf")
+# 必须从环境变量获取，不提供默认敏感信息
+RSS_URL = os.getenv("RSS_URL", "https://rss.mydrivers.com/Rss.aspx?Tid=1").strip()
+MEITUAN_API_KEY = os.getenv("MEITUAN_API_KEY", "").strip()
+UPLOAD_API_URL = os.getenv("UPLOAD_API_URL", "https://ongwu-site.vercel.app/api/upload").strip()
+UPLOAD_API_TOKEN = os.getenv("UPLOAD_API_TOKEN", "").strip()
+
+if not MEITUAN_API_KEY:
+    raise ValueError("❌ 错误: 未设置 MEITUAN_API_KEY 环境变量")
+
+if not UPLOAD_API_TOKEN:
+    raise ValueError("❌ 错误: 未设置 UPLOAD_API_TOKEN 环境变量")
 
 KEYWORDS = ["科技", "计算机", "网络", "技术", "系统", "AI", "人工智能", "芯片", "软件"]
 
