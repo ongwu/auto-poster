@@ -1,0 +1,34 @@
+name: Auto Generate and Upload Posts
+
+on:
+  schedule:
+    # 每 3 小时运行一次 (cron: 分 时 日 月 周)
+    - cron: '0 */3 * * *'
+  workflow_dispatch: # 允许手动触发
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: Set up Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.9'
+
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install -r requirements.txt
+
+      - name: Run script
+        env:
+          MEITUAN_API_KEY: ${{ secrets.MEITUAN_API_KEY }}
+          UPLOAD_API_TOKEN: ${{ secrets.UPLOAD_API_TOKEN }}
+          # 如果这两个 URL 不敏感，也可以直接用默认值，或者配置在 Variables 里
+          # RSS_URL: ...
+          # UPLOAD_API_URL: ...
+        run: python auto_generate_posts.py
