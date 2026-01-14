@@ -10,7 +10,7 @@ from datetime import datetime
 # 必须从环境变量获取，不提供默认敏感信息
 RSS_URL = os.getenv("RSS_URL", "https://rss.mydrivers.com/Rss.aspx?Tid=1").strip()
 MEITUAN_API_KEY = os.getenv("MEITUAN_API_KEY", "").strip()
-UPLOAD_API_URL = os.getenv("UPLOAD_API_URL", "https://ongwu-site.vercel.app/api/upload").strip()
+UPLOAD_API_URL = os.getenv("UPLOAD_API_URL", "https://www.ongwu.cn/api/upload").strip()
 UPLOAD_API_TOKEN = os.getenv("UPLOAD_API_TOKEN", "").strip()
 
 if not MEITUAN_API_KEY:
