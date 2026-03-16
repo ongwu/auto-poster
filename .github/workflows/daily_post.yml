@@ -1,10 +1,10 @@
 name: Auto Generate and Upload Posts
 
-on:
-  schedule:
-    # 每 3 小时运行一次 (cron: 分 时 日 月 周)
-    - cron: '0 */3 * * *'
-  workflow_dispatch: # 允许手动触发
+#on:
+#  schedule:
+#    # 每 3 小时运行一次 (cron: 分 时 日 月 周)
+#    - cron: '0 */3 * * *'
+#  workflow_dispatch: # 允许手动触发
 
 jobs:
   build:
